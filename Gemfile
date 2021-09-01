@@ -48,6 +48,8 @@ gem 'colorize'
   gem 'dotenv-rails'
   gem 'faker'
   gem 'devise'
+  gem 'carrierwave', '~> 2.0' # for auploading photos and avatars
+
 
 
 
