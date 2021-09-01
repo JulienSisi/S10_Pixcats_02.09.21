@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+.form-style-custom {
+  margin-top: 20% !important;
+}
