@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_01_121133) do
+ActiveRecord::Schema.define(version: 2021_09_02_151358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,18 @@ ActiveRecord::Schema.define(version: 2021_09_01_121133) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "article_id"
+    t.bigint "articles_id"
+    t.bigint "carts_id"
+    t.integer "quantity", default: 1
     t.index ["article_id"], name: "index_baskets_on_article_id"
+    t.index ["articles_id"], name: "index_baskets_on_articles_id"
+    t.index ["carts_id"], name: "index_baskets_on_carts_id"
     t.index ["user_id"], name: "index_baskets_on_user_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,8 +52,11 @@ ActiveRecord::Schema.define(version: 2021_09_01_121133) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "avatars"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "baskets", "articles", column: "articles_id"
+  add_foreign_key "baskets", "carts", column: "carts_id"
 end
