@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         belongs_to :basket
-         has_many :articles, through: :basket
+     #    belongs_to :basket
+         has_many :articles #, through: :basket
+     
 
 end

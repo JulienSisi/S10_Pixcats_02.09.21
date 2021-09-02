@@ -2,8 +2,11 @@ Rails.application.routes.draw do
 
   resources :baskets
   resources :articles
-  # devise_for :users 
-  devise_for :users
+
+  devise_for :users, controllers: {
+    registrations: 'registrations'
+  }
+
   resource :basket, only: [:show, :update, :destroy]
   get "/", to: "static_page#home"
   root to: "home#index"

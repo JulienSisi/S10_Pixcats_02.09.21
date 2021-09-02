@@ -1,6 +1,6 @@
 class BasketsController < ApplicationController
   before_action :set_basket, only: %i[ show edit update destroy ]
-
+  before_action :set_cart, only: [:create]
   # GET /baskets or /baskets.json
   def index
     @baskets = Basket.all
@@ -21,8 +21,10 @@ class BasketsController < ApplicationController
 
   # POST /baskets or /baskets.json
   def create
-    @basket = Basket.new(basket_params)
-
+    # article = Article.find(params[:article_id])
+   # @basket=@article.add_article(article)
+    #@basket = Basket.new(basket_params)
+    
     respond_to do |format|
       if @basket.save
         format.html { redirect_to @basket, notice: "Basket was successfully created." }
